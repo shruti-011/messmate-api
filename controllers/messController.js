@@ -1,4 +1,4 @@
-const messes = require("../data/messData");
+const messes = require("../data/messes");
 
 // GET all
 exports.getAllMesses = (req, res) => {
@@ -7,8 +7,17 @@ exports.getAllMesses = (req, res) => {
 
 // GET by id
 exports.getMessById = (req, res) => {
+  console.log("========== GET BY ID ==========");
+  console.log("req.params.id =", req.params.id);
+
   const messId = parseInt(req.params.id);
+  console.log("Parsed ID =", messId);
+
+  console.log("All Messes =", messes);
+
   const mess = messes.find((m) => m.id === messId);
+
+  console.log("Found Mess =", mess);
 
   if (!mess) {
     return res.status(404).json({ message: "Mess not found" });
